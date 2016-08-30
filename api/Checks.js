@@ -122,8 +122,8 @@ class Checks extends Abstract {
                 .then((data) => {
                     return this._create(data);
                 })
-                .then((client) => {
-                    resolve(client);
+                .then((doc) => {
+                    resolve(doc);
                 })
                 .catch((error) => {
                     reject(error);
@@ -293,7 +293,7 @@ class Checks extends Abstract {
                 })
                 .catch((error) => {
                     if (error.code && error.code === 'already_exists') {
-                        reject(this.Error(`client already exists`, ErrorCodes.INVALID_DATA));
+                        reject(this.Error(`${this.entityName} already exists`, ErrorCodes.INVALID_DATA));
                     } else {
                         reject(error);
                     }
