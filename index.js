@@ -1,10 +1,12 @@
-var logger = require('maf/Service/Logger')('mazai');
+var path = require('path');
+
+var logger = require('maf/Service/Logger')('mazaid-rest-checks');
 
 process.on('unhandledRejection', (error) => {
     logger.fatal(error);
 });
 
-require('./init/config')()
+require(path.join(__dirname, '/init/config'))()
     .then((config) => {
         return require('./init/di')(logger, config);
     })
@@ -23,9 +25,9 @@ require('./init/config')()
 
             res._startTime = new Date().getTime();
 
-            if (req._debug == true) {
+            if (req._debug === true) {
 
-                require('./init/di')(logger, di.config, di)
+                require(path.join(__dirname, '/init/di'))(logger, di.config, di)
                     .then((di) => {
                         req.di = di;
                         next();
@@ -36,13 +38,15 @@ require('./init/config')()
                         next();
                     });
 
+                return;
+
             } else {
                 req.di = di;
                 next();
             }
         });
 
-        return require('./init/rest')(logger, app, di);
+        return require(path.join(__dirname, '/init/rest'))(logger, app, di);
 
     })
     .then((app) => {
@@ -56,5 +60,5 @@ require('./init/config')()
     })
     .catch((error) => {
         logger.fatal(error);
-        process.exit(1);
+        throw error;
     });

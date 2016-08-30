@@ -1,3 +1,5 @@
+var path = require('path');
+
 var Di = require('maf/Di');
 var RequestDebug = require('maf/Request/Debug');
 
@@ -18,13 +20,13 @@ module.exports = (logger, config, originalDi) => {
             originalDb = originalDi.db;
         }
 
-        require(__dirname + '/db')(config, di, originalDb)
+        require(path.join(__dirname,'db'))(config, di, originalDb)
             .then(() => {
-                return require(__dirname + '/../models')(config, di);
+                return require(path.join(__dirname, '..', 'models'))(config, di);
             })
             .then((models) => {
                 di.models = models;
-                return require(__dirname + '/../api')(config, models, di);
+                return require(path.join(__dirname, '..', 'api'))(config, models, di);
             })
             .then((api) => {
                 di.api = api;

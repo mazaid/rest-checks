@@ -3,7 +3,7 @@ module.exports = (config, models, di) => {
     return new Promise((resolve, reject) => {
 
         var A = {
-            Checks: require('./Checks'),
+            Checks: require('./Checks')
         };
 
         var api = {};

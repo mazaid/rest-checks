@@ -1,3 +1,5 @@
+var path = require('path');
+
 var _ = require('lodash');
 var joi = require('joi');
 
@@ -19,7 +21,7 @@ module.exports = function(logger, app, di) {
 
         var rest = new Rest(logger, app, restConfig);
 
-        var restModules = require(__dirname + '/../rest');
+        var restModules = require(path.join(__dirname, '..', 'rest'));
 
         var promises = [];
 

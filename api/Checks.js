@@ -44,8 +44,7 @@ class Checks extends Abstract {
         };
 
         this._systemFields = [
-            '_id',
-            // 'deleted'
+            '_id'
         ];
     }
 
@@ -293,7 +292,7 @@ class Checks extends Abstract {
                     resolve(doc);
                 })
                 .catch((error) => {
-                    if (error.code && error.code == 'already_exists') {
+                    if (error.code && error.code === 'already_exists') {
                         reject(this.Error(`client already exists`, ErrorCodes.INVALID_DATA));
                     } else {
                         reject(error);

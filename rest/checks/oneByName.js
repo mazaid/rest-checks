@@ -30,7 +30,7 @@ module.exports = {
                             throw api.checks.NotFoundError();
                         }
 
-                        res.result(api.servers.clearSystemFields(check));
+                        res.result(api.checks.clearSystemFields(check));
                     })
                     .catch((error) => {
                         var ec = {
