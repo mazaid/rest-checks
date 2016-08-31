@@ -8,7 +8,7 @@ module.exports = {
     title: 'status',
 
     methods: {
-        POST: {
+        GET: {
             title: 'get check status',
 
             schema: {
