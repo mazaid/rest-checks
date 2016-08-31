@@ -3,12 +3,16 @@ module.exports = (config, models, di) => {
     return new Promise((resolve, reject) => {
 
         var A = {
-            Checks: require('./Checks')
+            Checks: require('./Checks'),
+            RestApiClient: require('maf/Rest/Client'),
+            CheckTasks: require('mazaid-rest-api-clients/CheckTasks')
         };
 
         var api = {};
 
         api.checks = new A.Checks({}, models, api);
+        api.rest = new A.RestApiClient();
+        api.checkTasks = new A.CheckTasks(di.config.api.checkTasks, api.rest);
 
         for (var name in api) {
             if (di.debug && api[name].setDebugger) {

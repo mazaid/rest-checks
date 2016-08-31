@@ -30,7 +30,7 @@
   "dependencies": {
     "joi": "^9.0.4",
     "lodash": "^4.15.0",
-    "maf": "^0.4.3",
+    "maf": "^0.4.4",
     "mazaid-error": "^0.3.1",
     "md5": "^2.1.0",
     "mongodb": "^2.2.9",

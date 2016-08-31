@@ -29,6 +29,7 @@ class Checks extends Abstract {
             title:  joi.string().required(),
             description:  joi.string().default(null).allow(null),
             checker:  joi.string().required(),
+            timeout: joi.number().integer().min(1).default(180),
             data: joi.object().unknown(true).required(),
             active: joi.boolean().default(false)
         };
@@ -38,6 +39,7 @@ class Checks extends Abstract {
             title:  joi.string(),
             description:  joi.string().allow(null),
             checker:  joi.string(),
+            timeout: joi.number().integer().min(1),
             data: joi.object().unknown(true),
             active: joi.boolean(),
             deleted: joi.boolean()
@@ -309,7 +311,7 @@ class Checks extends Abstract {
     NotFoundError(name) {
         var message = this.entityName + ' not found';
 
-        if (checkName) {
+        if (name) {
             message = `${this.entityName} with name = "${name}" not found`;
         }
 

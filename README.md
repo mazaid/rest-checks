@@ -34,8 +34,7 @@ checks REST API
 
 ## PATCH /checks/:name
 
-## POST  /checks/:name/check
-
+## DELETE /checks/:name
 
 # License
 

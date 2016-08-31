@@ -34,14 +34,14 @@ module.exports = {
                     })
                     .catch((error) => {
                         var ec = {
-                            checks: api.checks.errorCodes
+                            checks: api.checks.ErrorCodes
                         };
 
                         if (!error.checkable) {
                             return res.logServerError(error);
                         }
 
-                        error.getCheckChain(res.logServerError)
+                        error.checkChain(res.logServerError)
                             .ifEntity(api.checks.entityName)
                             .ifCode(ec.checks.NOT_FOUND, res.notFound)
                             .end()
@@ -81,7 +81,7 @@ module.exports = {
                             return res.logServerError(error);
                         }
 
-                        error.getCheckChain(res.logServerError)
+                        error.checkChain(res.logServerError)
                            .ifEntity(api.checks.entityName)
                            .ifCode(ec.checks.NOT_FOUND, res.notFound)
                            .ifCode(ec.checks.INVALID_DATA, res.badRequest)
@@ -118,7 +118,7 @@ module.exports = {
                             return res.logServerError(error);
                         }
 
-                        error.getCheckChain(res.logServerError)
+                        error.checkChain(res.logServerError)
                            .check();
                     });
 

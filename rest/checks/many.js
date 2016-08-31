@@ -51,7 +51,7 @@ module.exports = {
                             return res.logServerError(error);
                         }
 
-                        error.getCheckChain(res.logServerError)
+                        error.checkChain(res.logServerError)
                            .check();
                     });
             }
@@ -95,7 +95,7 @@ module.exports = {
                             return res.logServerError(error);
                         }
 
-                        error.getCheckChain(res.logServerError)
+                        error.checkChain(res.logServerError)
                            .ifEntity(api.checks.entityName)
                            .ifCode(ec.checks.INVALID_DATA, res.badRequest)
                            .ifCode(ec.checks.ALREADY_EXISTS, res.badRequest)
