@@ -12,7 +12,7 @@ module.exports = (config, models, di) => {
 
         api.checks = new A.Checks({}, models, api);
         api.rest = new A.RestApiClient();
-        api.checkTasks = new A.CheckTasks(di.config.api.checkTasks, api.rest);
+        api.checkTasksClient = new A.CheckTasks(di.config.api.checkTasks, api.rest);
 
         for (var name in api) {
             if (di.debug && api[name].setDebugger) {

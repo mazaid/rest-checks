@@ -35,7 +35,7 @@ module.exports = {
                             timeout: check.timeout
                         };
 
-                        return api.checkTasks.create(checkTaskData);
+                        return api.checkTasksClient.create(checkTaskData);
                     })
                     .then((checkTask) => {
                         res.result(checkTask);

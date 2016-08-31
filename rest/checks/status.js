@@ -28,7 +28,7 @@ module.exports = {
                             throw api.checks.NotFoundError();
                         }
 
-                        return api.checkTasks.getLastByCheckId(check.id);
+                        return api.checkTasksClient.getLastByCheckId(check.id);
 
                     })
                     .then((checkTask) => {
