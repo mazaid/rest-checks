@@ -15,6 +15,18 @@ module.exports = {
             schema: {
                 path: {
                     ':name': joi.string().required()
+                },
+                query: {
+                    fields: joi.alternatives().try(joi.array().items(joi.string()), joi.string()).default(null),
+                    withCheckTasks: joi.alternatives().try(
+                        joi.boolean(),
+                        joi.object().keys({
+                            fields: joi.alternatives().try(
+                                joi.array().items(joi.string()),
+                                joi.string())
+                                .default(null)
+                        })
+                    )
                 }
             },
 
@@ -24,13 +36,38 @@ module.exports = {
                 var logger = req.di.logger;
                 var api = req.di.api;
 
-                api.checks.getByName(req.params.name)
-                    .then((check) => {
+                var fields = null;
+
+                if (typeof req.query.fields === 'string') {
+                    fields = _.map(req.query.fields.split(','), v => _.trim(v));
+                } else if (Array.isArray(req.query.fields)) {
+                    fields = req.query.fields;
+                }
+
+                var check = null;
+
+                api.checks.getByName(req.params.name, fields)
+                    .then((_check) => {
+
+                        check = _check;
+
                         if (!check) {
                             throw api.checks.NotFoundError();
                         }
 
-                        res.result(api.checks.clearSystemFields(check));
+                        var checkTasksFields = _.get(req.query.withCheckTasks, 'fields', null);
+
+                        return api.checkTasksClient.getLatestByCheckId([check.id], checkTasksFields);
+
+                    })
+                    .then((checkTask) => {
+                        var metadata = null;
+
+                        if (req.query.withCheckTasks) {
+                            metadata = {checkTask: checkTask};
+                        }
+
+                        res.result(api.checks.clearSystemFields(check), metadata);
                     })
                     .catch((error) => {
                         var ec = {

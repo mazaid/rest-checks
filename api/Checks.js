@@ -65,14 +65,18 @@ class Checks extends Abstract {
 
     }
 
-    getByName(name)  {
+    getByName(name, fields)  {
 
         return new Promise((resolve, reject) => {
             var query = {
                 name: name
             };
 
-            this._model().findOne(query)
+            if (Array.isArray(fields)) {
+                fields = this._prepareFields(fields);
+            }
+
+            this._model().findOne(query, {fields: fields})
                 .then((doc) => {
                     resolve(doc);
                 })
@@ -91,6 +95,10 @@ class Checks extends Abstract {
                 skip: 0
             }
         });
+
+        if (Array.isArray(fields)) {
+            fields = this._prepareFields(fields);
+        }
 
         chain.onExec((data) => {
 
