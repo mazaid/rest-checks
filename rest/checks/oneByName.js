@@ -60,11 +60,11 @@ module.exports = {
                         return api.checkTasksClient.getLatestByCheckId([check.id], checkTasksFields);
 
                     })
-                    .then((checkTask) => {
+                    .then((checkTaskResult) => {
                         var metadata = null;
 
                         if (req.query.withCheckTasks) {
-                            metadata = {checkTask: checkTask};
+                            metadata = {checkTask: _.get(checkTaskResult, '0', null)};
                         }
 
                         res.result(api.checks.clearSystemFields(check), metadata);
