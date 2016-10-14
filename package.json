@@ -32,6 +32,7 @@
     "lodash": "^4.15.0",
     "maf": "^0.4.4",
     "mazaid-error": "^0.3.1",
+    "mazaid-rest-api-clients": "^0.1.2",
     "md5": "^2.1.0",
     "mongodb": "^2.2.9",
     "repl-extra": "^0.1.3",
