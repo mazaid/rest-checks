@@ -29,7 +29,7 @@ class Checks extends Abstract {
             title:  joi.string().required(),
             description:  joi.string().default(null).allow(null),
             checker:  joi.string().required(),
-            timeout: joi.number().integer().min(1).default(180),
+            timeout: joi.number().integer().min(1).default(60),
             data: joi.object().unknown(true).required(),
             active: joi.boolean().default(false)
         };
