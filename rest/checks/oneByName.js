@@ -26,6 +26,15 @@ module.exports = {
                                 joi.string())
                                 .default(null)
                         })
+                    ),
+                    withExecTasks: joi.alternatives().try(
+                        joi.boolean(),
+                        joi.object().keys({
+                            fields: joi.alternatives().try(
+                                joi.array().items(joi.string()),
+                                joi.string())
+                                .default(null)
+                        })
                     )
                 }
             },
@@ -45,6 +54,7 @@ module.exports = {
                 }
 
                 var check = null;
+                var metadata = null;
 
                 api.checks.getByName(req.params.name, fields)
                     .then((_check) => {
@@ -61,10 +71,23 @@ module.exports = {
 
                     })
                     .then((checkTaskResult) => {
-                        var metadata = null;
-
                         if (req.query.withCheckTasks) {
                             metadata = {checkTask: _.get(checkTaskResult, '0', null)};
+                        }
+
+                        var execTaskId = _.get(checkTaskResult, '0.execTaskId', null);
+
+                        if (execTaskId) {
+                            return api.execTasksClient.getById(execTaskId);
+                        } else {
+                            return null;
+                        }
+
+                    })
+                    .then((execTaskResult) => {
+
+                        if (req.query.withCheckTasks && metadata && execTaskResult) {
+                            metadata.execTask = execTaskResult;
                         }
 
                         res.result(api.checks.clearSystemFields(check), metadata);

@@ -5,7 +5,8 @@ module.exports = (config, models, di) => {
         var A = {
             Checks: require('./Checks'),
             RestApiClient: require('maf/Rest/Client'),
-            CheckTasks: require('mazaid-rest-api-clients/CheckTasks')
+            CheckTasks: require('mazaid-rest-api-clients/CheckTasks'),
+            ExecTasks: require('mazaid-rest-api-clients/ExecTasks')
         };
 
         var api = {};
@@ -13,6 +14,7 @@ module.exports = (config, models, di) => {
         api.checks = new A.Checks({}, models, api);
         api.rest = new A.RestApiClient();
         api.checkTasksClient = new A.CheckTasks(di.config.api.checkTasks, api.rest);
+        api.execTasksClient = new A.ExecTasks(di.config.api.execTasks, api.rest);
 
         for (var name in api) {
             if (di.debug && api[name].setDebugger) {

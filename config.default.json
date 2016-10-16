@@ -9,6 +9,9 @@
     "api": {
         "checkTasks": {
             "base": "http://localhost:8083"
+        },
+        "execTasks": {
+            "base": "http://localhost:8084"
         }
     }
 
