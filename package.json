@@ -32,7 +32,7 @@
     "lodash": "^4.16.4",
     "maf": "^0.4.5",
     "mazaid-error": "^0.3.1",
-    "mazaid-rest-api-clients": "^0.1.4",
+    "mazaid-rest-api-clients": "^0.1.6",
     "md5": "^2.2.1",
     "moment": "^2.15.1",
     "mongodb": "^2.2.10",
