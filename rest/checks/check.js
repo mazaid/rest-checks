@@ -35,6 +35,10 @@ module.exports = {
                             timeout: check.timeout
                         };
 
+                        if (check.userAnalyzeFn) {
+                            checkTaskData.userAnalyzeFn = check.userAnalyzeFn;
+                        }
+
                         return api.checkTasksClient.create(checkTaskData);
                     })
                     .then((checkTask) => {

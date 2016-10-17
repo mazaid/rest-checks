@@ -31,6 +31,7 @@ class Checks extends Abstract {
             checker:  joi.string().required(),
             timeout: joi.number().integer().min(1).default(60),
             data: joi.object().unknown(true).required(),
+            userAnalyzeFn: joi.string().default(null).allow(null),
             active: joi.boolean().default(false)
         };
 
@@ -41,6 +42,7 @@ class Checks extends Abstract {
             checker:  joi.string(),
             timeout: joi.number().integer().min(1),
             data: joi.object().unknown(true),
+            userAnalyzeFn: joi.string().default(null).allow(null).description('custom user analyze function'),
             active: joi.boolean(),
             deleted: joi.boolean()
         };
