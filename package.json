@@ -28,9 +28,9 @@
   },
   "homepage": "https://github.com/mazaid/rest-checks#readme",
   "dependencies": {
-    "joi": "^9.1.1",
+    "joi": "^9.2.0",
     "lodash": "^4.16.4",
-    "maf": "^0.4.5",
+    "maf": "^0.4.6",
     "mazaid-error": "^0.3.1",
     "mazaid-rest-api-clients": "^0.1.6",
     "md5": "^2.2.1",
