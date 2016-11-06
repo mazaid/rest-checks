@@ -25,10 +25,10 @@ class Checks extends Abstract {
         this.ErrorCodes = ErrorCodes;
 
         this._creationSchema = {
-            name:  joi.string().required(),
-            title:  joi.string().required(),
-            description:  joi.string().default(null).allow(null),
-            checker:  joi.string().required(),
+            name:  joi.string().trim().required(),
+            title:  joi.string().trim().required(),
+            description:  joi.string().trim().default(null).allow(null),
+            checker:  joi.string().trim().required(),
             timeout: joi.number().integer().min(1).default(60),
             data: joi.object().unknown(true).required(),
             userAnalyzeFn: joi.string().default(null).allow(null),
@@ -36,10 +36,10 @@ class Checks extends Abstract {
         };
 
         this._modificationSchema = {
-            name:  joi.string(),
-            title:  joi.string(),
-            description:  joi.string().allow(null),
-            checker:  joi.string(),
+            name:  joi.string().trim(),
+            title:  joi.string().trim(),
+            description:  joi.string().trim().allow(null),
+            checker:  joi.string().trim(),
             timeout: joi.number().integer().min(1),
             data: joi.object().unknown(true),
             userAnalyzeFn: joi.string().default(null).allow(null).description('custom user analyze function'),
