@@ -16,6 +16,7 @@ module.exports = {
                     limit: joi.number().default(10).min(0).max(100),
                     offset: joi.number().default(0).min(0).max(100),
                     fields: joi.alternatives().try(joi.array().items(joi.string()), joi.string()).default(null),
+                    active: joi.boolean(),
                     withCheckTasks: joi.alternatives().try(
                         joi.boolean(),
                         joi.object().keys({
@@ -38,6 +39,10 @@ module.exports = {
                     fields = _.map(req.query.fields.split(','), v => _.trim(v));
                 } else if (Array.isArray(req.query.fields)) {
                     fields = req.query.fields;
+                }
+
+                if (typeof req.query.active !== 'undefined') {
+                    filters.active = req.query.active;
                 }
 
                 var docs = [], result = {}, checkIds = [];
