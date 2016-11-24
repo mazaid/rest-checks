@@ -53,10 +53,18 @@ class Checks extends Abstract {
     }
 
 
-    getById(id) {
+    getById(id, fields) {
+
+        var query = {
+            _id: id
+        };
+
+        if (Array.isArray(fields)) {
+            fields = this._prepareFields(fields);
+        }
 
         return new Promise((resolve, reject) => {
-            this._model().findOne({_id: id})
+            this._model().findOne(query, {fields: fields})
                 .then((doc) => {
                     resolve(doc);
                 })
