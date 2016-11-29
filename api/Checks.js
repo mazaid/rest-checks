@@ -15,7 +15,7 @@ var Chain = require('maf/Chain');
 
 class Checks extends Abstract {
 
-    constructor(config, models, api) {
+    constructor (config, models, api) {
         super(models, api);
 
         this._config = config;
@@ -53,7 +53,7 @@ class Checks extends Abstract {
     }
 
 
-    getById(id, fields) {
+    getById (id, fields) {
 
         var query = {
             _id: id
@@ -75,7 +75,7 @@ class Checks extends Abstract {
 
     }
 
-    getByName(name, fields)  {
+    getByName (name, fields) {
 
         return new Promise((resolve, reject) => {
             var query = {
@@ -97,7 +97,7 @@ class Checks extends Abstract {
         });
     }
 
-    find(filters, fields) {
+    find (filters, fields) {
 
         var chain = new Chain({
             steps: {
@@ -130,7 +130,7 @@ class Checks extends Abstract {
 
     }
 
-    create(data) {
+    create (data) {
 
         return new Promise((resolve, reject) => {
 
@@ -152,7 +152,7 @@ class Checks extends Abstract {
 
     }
 
-    createTest() {
+    createTest () {
         var data = {
             name: 'test',
             title: 'test',
@@ -165,7 +165,7 @@ class Checks extends Abstract {
         return this.create(data);
     }
 
-    updateById(id, data) {
+    updateById (id, data) {
 
         return new Promise((resolve, reject) => {
             if (this._isEmptyObject(data)) {
@@ -203,7 +203,7 @@ class Checks extends Abstract {
 
     }
 
-    updateByName(name, data) {
+    updateByName (name, data) {
 
         return new Promise((resolve, reject) => {
             if (!data) {
@@ -233,7 +233,7 @@ class Checks extends Abstract {
 
     }
 
-    deleteById(id) {
+    deleteById (id) {
 
         return new Promise((resolve, reject) => {
 
@@ -269,7 +269,7 @@ class Checks extends Abstract {
 
     }
 
-    deleteByName(name) {
+    deleteByName (name) {
 
         return new Promise((resolve, reject) => {
             this.getByName(name)
@@ -326,7 +326,7 @@ class Checks extends Abstract {
      * @param {String} checkName
      * @return {Error}
      */
-    NotFoundError(name) {
+    NotFoundError (name) {
         var message = this.entityName + ' not found';
 
         if (name) {
@@ -341,7 +341,7 @@ class Checks extends Abstract {
      *
      * @return {model}
      */
-    _model() {
+    _model () {
         return this._models.checks;
     }
 }

@@ -41,7 +41,7 @@ module.exports = {
 
             onlyPrivate: false,
 
-            callback: function(req, res) {
+            callback: function (req, res) {
                 var logger = req.di.logger;
                 var api = req.di.api;
 

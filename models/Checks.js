@@ -4,7 +4,7 @@ var Abstract = require('./Abstract');
 
 class Checks extends Abstract {
 
-    constructor(db) {
+    constructor (db) {
         super(db);
 
         this._collectionName = 'checks';
