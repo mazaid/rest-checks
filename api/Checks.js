@@ -277,7 +277,7 @@ class Checks extends Abstract {
 
                     if (!doc) {
                         throw this.Error(
-                            `${this.entityName} not found: id = ${id}`,
+                            `${this.entityName} not found: id = ${doc._id}`,
                             this.errorCodes.NOT_FOUND
                         );
                     }
@@ -323,7 +323,7 @@ class Checks extends Abstract {
     }
 
     /**
-     * @param {String} checkName
+     * @param {String} name
      * @return {Error}
      */
     NotFoundError (name) {
