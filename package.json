@@ -32,27 +32,27 @@
   },
   "homepage": "https://github.com/mazaid/rest-checks#readme",
   "dependencies": {
-    "joi": "^9.2.0",
+    "joi": "^10.0.2",
     "lodash": "^4.16.4",
-    "maf": "^0.4.6",
+    "maf": "^0.5.0",
     "mazaid-error": "^0.3.1",
     "mazaid-rest-api-clients": "^0.1.6",
     "md5": "^2.2.1",
     "moment": "^2.15.1",
     "mongodb": "^2.2.10",
-    "nprof": "^0.5.0",
+    "nprof": "^0.6.0",
     "repl-extra": "^0.1.3",
-    "uuid": "^2.0.3"
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "chai": "3.5.0",
     "chai-json-schema": "^1.4.0",
-    "codeclimate-test-reporter": "^0.3.3",
+    "codeclimate-test-reporter": "^0.4.0",
     "esdoc": "^0.4.8",
     "esdoc-node": "^1.0.0",
     "eslint": "^3.11.1",
     "ink-docstrap": "^1.2.1",
     "istanbul": "^0.4.4",
-    "mocha": "^2.4.5"
+    "mocha": "^3.2.0"
   }
 }
