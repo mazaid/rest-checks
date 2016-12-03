@@ -4,6 +4,7 @@
   "description": "checks REST API",
   "main": "index.js",
   "scripts": {
+    "config": "node ./config.default.js",
     "clean": "rm -rf ./esdoc ./coverage",
     "docs:open": "npm run docs && open ./esdoc/index.html",
     "docs": "rm -rf ./esdoc && ./node_modules/.bin/esdoc ./ -c ./.esdoc.json",

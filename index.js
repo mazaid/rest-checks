@@ -6,7 +6,7 @@ process.on('unhandledRejection', (error) => {
     logger.fatal(error);
 });
 
-require(path.join(__dirname, '/init/config'))()
+require(path.join(__dirname, '/init/config'))(logger)
     .then((config) => {
         return require('./init/di')(logger, config);
     })
