@@ -19,7 +19,7 @@ module.exports = {
                 query: {
                     fields: joi.alternatives().try(joi.array().items(joi.string()), joi.string()).default(null),
                     withCheckTasks: joi.alternatives().try(
-                        joi.boolean(),
+                        joi.boolean().truthy('true').falsy('false'),
                         joi.object().keys({
                             fields: joi.alternatives().try(
                                 joi.array().items(joi.string()),
@@ -28,7 +28,7 @@ module.exports = {
                         })
                     ),
                     withExecTasks: joi.alternatives().try(
-                        joi.boolean(),
+                        joi.boolean().truthy('true').falsy('false'),
                         joi.object().keys({
                             fields: joi.alternatives().try(
                                 joi.array().items(joi.string()),

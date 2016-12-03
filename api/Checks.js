@@ -32,7 +32,7 @@ class Checks extends Abstract {
             timeout: joi.number().integer().min(1).default(60),
             data: joi.object().unknown(true).required(),
             userAnalyzeFn: joi.string().default(null).allow(null),
-            active: joi.boolean().default(false)
+            active: joi.boolean().default(false).truthy('true').falsy('false')
         };
 
         this._modificationSchema = {
@@ -43,8 +43,8 @@ class Checks extends Abstract {
             timeout: joi.number().integer().min(1),
             data: joi.object().unknown(true),
             userAnalyzeFn: joi.string().default(null).allow(null).description('custom user analyze function'),
-            active: joi.boolean(),
-            deleted: joi.boolean()
+            active: joi.boolean().truthy('true').falsy('false'),
+            deleted: joi.boolean().truthy('true').falsy('false')
         };
 
         this._systemFields = [

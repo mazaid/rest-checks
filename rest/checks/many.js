@@ -16,9 +16,9 @@ module.exports = {
                     limit: joi.number().default(10).min(0).max(100),
                     offset: joi.number().default(0).min(0).max(100),
                     fields: joi.alternatives().try(joi.array().items(joi.string()), joi.string()).default(null),
-                    active: joi.boolean(),
+                    active: joi.boolean().truthy('true').falsy('false'),
                     withCheckTasks: joi.alternatives().try(
-                        joi.boolean(),
+                        joi.boolean().truthy('true').falsy('false'),
                         joi.object().keys({
                             fields: joi.alternatives().try(
                                 joi.array().items(joi.string()),
