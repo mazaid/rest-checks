@@ -86,7 +86,7 @@ module.exports = {
                     })
                     .then((execTaskResult) => {
 
-                        if (req.query.withCheckTasks && metadata && execTaskResult) {
+                        if (req.query.withExecTasks && metadata && execTaskResult) {
                             metadata.execTask = execTaskResult;
                         }
 
